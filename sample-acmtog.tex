@@ -14,6 +14,8 @@
 \usepackage{timet,color}
 \usepackage[urlcolor=blue,citecolor=black,linkcolor=black]{hyperref}
 \usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
 
 \begin{document}
 \tableofcontents
@@ -53,13 +55,13 @@ Several existing techniques are reviewed above, from that some issues in VMI suc
 
 \subsection{Design of the Method}
 This section details the design and operation of the proposed method to analyze malware in a Virtual Machine through Virtual Machine Introspection technique. It consists of the following five steps: 
-\begin{enumerate} 
+\begin{itemize}
   \item Access to the asset: This is achieved through the interprocess mechanism called COM/XPCOM that implements the VirtualBox API;
   \item Collection: It generates a memory dump of the Virtual Machine volatile memory;
   \item Analysis: It translates the low-level bytes into high-level information with the help of the Volatility tool, through the profile of the virtual machine and extracts objects from the operating system;
   \item Logging: It generates the log of the malware analysis;
   \item Containment: The COM/XPCOM interprocess mechanism sends a killing command to finish the malware execution from outside the Virtual Machine;
-\end{enumerate}
+\end{itemize} 
 \section {Performance metrics}
 FN characterizes the false-negative rate for evaluating the inaccurate detection of the malware files and FP denotes the false-positive value for calculating the inaccurate detection of benign files (Table ~\ref{tab:freq1}).
 \begin{table}
@@ -67,22 +69,30 @@ FN characterizes the false-negative rate for evaluating the inaccurate detection
   \label{tab:freq1}
   \begin{tabular}{cc}
     Author&Methods\\
+    \midrule
         Mishra et al.&KVM Inspector and ML\\
+    \midrule
         Kumara and Jaidhar&ML, RF MFA, and leveraging VMI\\
+    \midrule
         Patil et al.&AMD\\
+    \midrule
         Zhang et al.&Detection model using MFA\\
+    \midrule
         Kumara and Jaidhar&AMMDS\\
+    \midrule
         Kordestani et al.&LSS\\
+    \midrule
         Kordestani and Saif&observer-based mitigation and attack detection framework\\
+    \midrule
         Kiperberg&Virtualization based method\\
+    \midrule
         Proposed&AGM-AB\\
 \end{tabular}
 \end{table}
 \par Initially, the dataset is collected from a GitHub source that is named as ‘ember’ for performing the process that involves malware and benign files. Initially, the dataset Ds is trained to the system using Eq:
 $$
-D_s =  \{\ x_n y_n\}\ ; \{\ n = 1,2,3...\}\,
+D_s =  \{\ x_n y_n\}\ ; \{\ n = 1,2,3...\}\ \quad \text{Where } x \text{ represents executable} 
 $$
-\par Where, $x_n$ is represents the benign executable files, $y_n$ represents the malware files in the virtual machine
 \par It is calculated by the number of incorrect and correct predictions which is summarized by count values. It is used to summarize the performance of classified malware files on the position of tested and trained data. Additionally, the confusion matrix is represented in Figure ~\ref{Figure 2:image}, where, TP denotes the true positive for calculating the accurate detection of the malware files in the dataset. 
 \begin{figure}
   \centering
